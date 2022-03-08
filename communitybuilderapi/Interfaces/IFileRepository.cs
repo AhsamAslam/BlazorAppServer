@@ -8,6 +8,6 @@ namespace communitybuilderapi.Interfaces
 {
     public interface IFileRepository
     {
-        Task<File> UploadFile(File File);
+        //Task<File> UploadFile(File File);
     }
 }

@@ -33,5 +33,11 @@
 		<PackageReference Include="Syncfusion.Licensing" Version="19.3.0.48" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Update="appsettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
 
 </Project>

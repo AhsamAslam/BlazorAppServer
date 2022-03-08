@@ -8,6 +8,6 @@ namespace communitybuilderapi.Interfaces
 {
     public interface IGenericLocalizationRepository
     {
-        Task<IEnumerable<GenericLocalizationKeyValues>> GetLocalizationGenericKeyValues(int LanguageId);
+        //Task<IEnumerable<GenericLocalizationKeyValues>> GetLocalizationGenericKeyValues(int LanguageId);
     }
 }

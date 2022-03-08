@@ -8,7 +8,7 @@ namespace communitybuilderapi.Interfaces
 {
     public interface ICSSRepository
     {
-        Task<IEnumerable<CustomCss>> GetCSS(string SitePage);
-        Task<CustomCss> AddCSS(CustomCss Css);
+        //Task<IEnumerable<CustomCss>> GetCSS(string SitePage);
+        //Task<CustomCss> AddCSS(CustomCss Css);
     }
 }

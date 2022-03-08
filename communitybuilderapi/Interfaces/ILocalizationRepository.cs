@@ -9,8 +9,8 @@ namespace communitybuilderapi.Interfaces
 {
     public interface ILocalizationRepository
     {
-        Task<IEnumerable<Languages>> GetLanguages(int SiteID);
-        Task<IEnumerable<LanguageLocalization>> GetLocalization(int SiteID);
+        //Task<IEnumerable<Languages>> GetLanguages(int SiteID);
+        //Task<IEnumerable<LanguageLocalization>> GetLocalization(int SiteID);
         //Task<Localization> GetEvent(int EventID);
         //Task<Localization> AddEvent(Event Event);
         //Task<Localization> UpdateEvent(Event Event);

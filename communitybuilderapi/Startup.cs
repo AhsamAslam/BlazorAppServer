@@ -37,16 +37,16 @@ namespace communitybuilderapi
             options.UseSqlServer(Configuration.GetConnectionString("CommunityBuilder")));
             //services.Directories();
 
-            services.AddScoped<IEventRepository, EventRepository>();
-            services.AddScoped<IBusinessRepository, BusinessRepository>();
-            services.AddScoped<IFanRepository, FanRepository>();
-            services.AddScoped<ILocalizationRepository, LocalizationRepository>();
-            services.AddScoped<IGenericLocalizationRepository, GenericLocalizationRepository>();
-            services.AddScoped<ISiteRepository, SiteRepository>();
-            services.AddScoped<IHeaderRepository, HeaderRepository>();
+            //services.AddScoped<IEventRepository, EventRepository>();
+            //services.AddScoped<IBusinessRepository, BusinessRepository>();
+            //services.AddScoped<IFanRepository, FanRepository>();
             //services.AddScoped<ILocalizationRepository, LocalizationRepository>();
-            services.AddScoped<ICSSRepository, CSSRepository>();
-            services.AddScoped<IFileRepository, FileRepository>();
+            //services.AddScoped<IGenericLocalizationRepository, GenericLocalizationRepository>();
+            //services.AddScoped<ISiteRepository, SiteRepository>();
+            //services.AddScoped<IHeaderRepository, HeaderRepository>();
+            ////services.AddScoped<ILocalizationRepository, LocalizationRepository>();
+            //services.AddScoped<ICSSRepository, CSSRepository>();
+            //services.AddScoped<IFileRepository, FileRepository>();
             services.AddSyncfusionBlazor();
             services.AddHttpContextAccessor();
 

@@ -8,10 +8,10 @@ namespace communitybuilderapi.Interfaces
 {
     public interface ISiteRepository
     {
-        Task<IEnumerable<Site>> GetAllSites();
+        //Task<IEnumerable<Site>> GetAllSites();
 
-        Task<int> GetSiteIDByURL(string URL);
+        //Task<int> GetSiteIDByURL(string URL);
 
-        Task<Site> GetSiteBySiteURL(string SiteURL);
+        //Task<Site> GetSiteBySiteURL(string SiteURL);
     }
 }

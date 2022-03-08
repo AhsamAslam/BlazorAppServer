@@ -8,6 +8,6 @@ namespace communitybuilderapi.Interfaces
 {
     public interface IHeaderRepository
     {
-        Task<SiteHeader> GetHeadersBySiteIDAndSitePage(int SiteID, string SitePage); 
+        //Task<SiteHeader> GetHeadersBySiteIDAndSitePage(int SiteID, string SitePage); 
     }
 }
