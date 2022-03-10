@@ -29,7 +29,7 @@ namespace communitybuilderapi.Migrations
                     created_by_id = table.Column<int>(type: "int", nullable: false),
                     created_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     make_active_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    deactivated_by_id = table.Column<int>(type: "int", nullable: false),
+                    deactivated_by_id = table.Column<int>(type: "int", nullable: true),
                     deactivate_datetime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     invisible = table.Column<bool>(type: "bit", nullable: false),
                     inactive = table.Column<bool>(type: "bit", nullable: false)
@@ -60,7 +60,7 @@ namespace communitybuilderapi.Migrations
                     created_by_id = table.Column<int>(type: "int", nullable: false),
                     created_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     make_active_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    deactivated_by_id = table.Column<int>(type: "int", nullable: false),
+                    deactivated_by_id = table.Column<int>(type: "int", nullable: true),
                     deactivate_datetime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     invisible = table.Column<bool>(type: "bit", nullable: false),
                     inactive = table.Column<bool>(type: "bit", nullable: false)
@@ -85,7 +85,7 @@ namespace communitybuilderapi.Migrations
                     created_by_id = table.Column<int>(type: "int", nullable: false),
                     created_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     make_active_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    deactivated_by_id = table.Column<int>(type: "int", nullable: false),
+                    deactivated_by_id = table.Column<int>(type: "int", nullable: true),
                     deactivate_datetime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     invisible = table.Column<bool>(type: "bit", nullable: false),
                     inactive = table.Column<bool>(type: "bit", nullable: false)
@@ -129,7 +129,7 @@ namespace communitybuilderapi.Migrations
                     created_by_id = table.Column<int>(type: "int", nullable: false),
                     created_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     make_active_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    deactivated_by_id = table.Column<int>(type: "int", nullable: false),
+                    deactivated_by_id = table.Column<int>(type: "int", nullable: true),
                     deactivate_datetime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     invisible = table.Column<bool>(type: "bit", nullable: false),
                     inactive = table.Column<bool>(type: "bit", nullable: false)
@@ -178,7 +178,7 @@ namespace communitybuilderapi.Migrations
                     created_by_id = table.Column<int>(type: "int", nullable: false),
                     created_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     make_active_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    deactivated_by_id = table.Column<int>(type: "int", nullable: false),
+                    deactivated_by_id = table.Column<int>(type: "int", nullable: true),
                     deactivate_datetime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     invisible = table.Column<bool>(type: "bit", nullable: false),
                     inactive = table.Column<bool>(type: "bit", nullable: false)
@@ -203,7 +203,7 @@ namespace communitybuilderapi.Migrations
                     created_by_id = table.Column<int>(type: "int", nullable: false),
                     created_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     make_active_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    deactivated_by_id = table.Column<int>(type: "int", nullable: false),
+                    deactivated_by_id = table.Column<int>(type: "int", nullable: true),
                     deactivate_datetime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     invisible = table.Column<bool>(type: "bit", nullable: false),
                     inactive = table.Column<bool>(type: "bit", nullable: false)
@@ -225,7 +225,7 @@ namespace communitybuilderapi.Migrations
                     created_by_id = table.Column<int>(type: "int", nullable: false),
                     created_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     make_active_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    deactivated_by_id = table.Column<int>(type: "int", nullable: false),
+                    deactivated_by_id = table.Column<int>(type: "int", nullable: true),
                     deactivate_datetime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     invisible = table.Column<bool>(type: "bit", nullable: false),
                     inactive = table.Column<bool>(type: "bit", nullable: false)

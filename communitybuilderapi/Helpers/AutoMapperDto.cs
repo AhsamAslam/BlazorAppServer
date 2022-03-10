@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using communitybuilderapi.Dtos;
+using communitybuilderapi.DataModel;
+using communitybuilderapi.Dtos.BusinessDtos;
 using communitybuilderapi.Models;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace communitybuilderapi.Helpers
             //CreateMap<BusinessNameModel, BusinessNameDto>().ReverseMap();
             //CreateMap<SliderItem, SliderItemDto>().ReverseMap();
             //CreateMap<File, FileDto>().ReverseMap();
+            CreateMap<List<business>, List<BusinessGridDto>>().ReverseMap();
 
         }
     }

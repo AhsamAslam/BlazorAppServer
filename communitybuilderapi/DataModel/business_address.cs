@@ -25,5 +25,10 @@ namespace communitybuilderapi.DataModel
         public bool is_administrative { get; set; } = false;
         [MaxLength]
         public string internal_comments { get; set; }
+
+        //Relation
+
+        public virtual address address { get; set; }
+        public virtual business business { get; set; }
     }
 }

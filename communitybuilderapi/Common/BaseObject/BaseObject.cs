@@ -17,7 +17,7 @@ namespace communitybuilderapi.Common.BaseObject
         public DateTime created_datetime { get; set; } = DateTime.Now;
         [Required]
         public DateTime make_active_datetime { get; set; } = DateTime.Now;
-        public int deactivated_by_id { get; set; }
+        public int? deactivated_by_id { get; set; }
         public DateTime? deactivate_datetime { get; set; }
         [Required]
         public bool invisible { get; set; } = false;

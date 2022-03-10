@@ -38,7 +38,7 @@ namespace communitybuilderapi
             //services.Directories();
 
             //services.AddScoped<IEventRepository, EventRepository>();
-            //services.AddScoped<IBusinessRepository, BusinessRepository>();
+            services.AddScoped<IBusinessRepository, BusinessRepository>();
             //services.AddScoped<IFanRepository, FanRepository>();
             //services.AddScoped<ILocalizationRepository, LocalizationRepository>();
             //services.AddScoped<IGenericLocalizationRepository, GenericLocalizationRepository>();

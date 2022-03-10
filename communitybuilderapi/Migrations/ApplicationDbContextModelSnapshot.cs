@@ -55,7 +55,7 @@ namespace communitybuilderapi.Migrations
                     b.Property<DateTime?>("deactivate_datetime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("deactivated_by_id")
+                    b.Property<int?>("deactivated_by_id")
                         .HasColumnType("int");
 
                     b.Property<string>("email")
@@ -114,7 +114,7 @@ namespace communitybuilderapi.Migrations
                     b.Property<DateTime?>("deactivate_datetime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("deactivated_by_id")
+                    b.Property<int?>("deactivated_by_id")
                         .HasColumnType("int");
 
                     b.Property<Guid>("guid")
@@ -189,7 +189,7 @@ namespace communitybuilderapi.Migrations
                     b.Property<DateTime?>("deactivate_datetime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("deactivated_by_id")
+                    b.Property<int?>("deactivated_by_id")
                         .HasColumnType("int");
 
                     b.Property<int>("id_address")
@@ -278,7 +278,7 @@ namespace communitybuilderapi.Migrations
                     b.Property<DateTime?>("deactivate_datetime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("deactivated_by_id")
+                    b.Property<int?>("deactivated_by_id")
                         .HasColumnType("int");
 
                     b.Property<string>("first_name")
@@ -359,7 +359,7 @@ namespace communitybuilderapi.Migrations
                     b.Property<DateTime?>("deactivate_datetime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("deactivated_by_id")
+                    b.Property<int?>("deactivated_by_id")
                         .HasColumnType("int");
 
                     b.Property<string>("facebook_url")
@@ -434,7 +434,7 @@ namespace communitybuilderapi.Migrations
                     b.Property<DateTime?>("deactivate_datetime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("deactivated_by_id")
+                    b.Property<int?>("deactivated_by_id")
                         .HasColumnType("int");
 
                     b.Property<int>("id_address")
@@ -485,7 +485,7 @@ namespace communitybuilderapi.Migrations
                     b.Property<DateTime?>("deactivate_datetime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("deactivated_by_id")
+                    b.Property<int?>("deactivated_by_id")
                         .HasColumnType("int");
 
                     b.Property<int>("id_business")

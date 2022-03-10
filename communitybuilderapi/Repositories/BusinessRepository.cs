@@ -8,22 +8,37 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using communitybuilderapi.Dtos.BusinessDtos;
+using communitybuilderapi.DataModel;
 
 namespace communitybuilderapi.Repositories
 {
     public class BusinessRepository : IBusinessRepository
     {
-        //#region
-        //private IDbConnection db;
-        //#endregion
-        //public BusinessRepository(IConfiguration configuration)
-        //{
-        //    this.db = new SqlConnection(configuration.GetConnectionString("CommunityBuilder"));
-        //}
-        //public Task<Business> AddBusiness(Business Business)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        #region
+        private IDbConnection db;
+        #endregion
+        public BusinessRepository(IConfiguration configuration)
+        {
+            this.db = new SqlConnection(configuration.GetConnectionString("CommunityBuilder"));
+        }
+        public async Task<AddBusinessDto> AddBusiness(AddBusinessDto Business)
+        {
+            try
+            {
+                var sql = "Insert into Event(VirtualOrPhysical, VirtualType, Date, Time, TimeZone,Location, Type, Hyperlink1, Hyperlink2, Comment, DateAdded, " +
+                    "AddedByUserID, Inactive, DeactivateOn, DeactivatedByUserID) values(@VirtualOrPhysical, @VirtualType, @Date, @Time, @TimeZone, @Location, @Type, @Hyperlink1," +
+                    " @Hyperlink2, @Comment, @DateAdded, @AddedByUserID, @Inactive, @DeactivateOn, @DeactivatedByUserID); "
+                          + "Select CAST(SCOPE_IDENTITY() as int);";
+                await db.ExecuteAsync(sql, Business).ConfigureAwait(false);
+                return Business;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
 
         //public Task<int> DeleteBusiness(int BusinessID)
         //{
@@ -85,19 +100,30 @@ namespace communitybuilderapi.Repositories
         //        throw;
         //    }
         //}
-        //public async Task<IEnumerable<BusinessGrid>> GetBusinessesGrid()
-        //{
-        //    try
-        //    {
-        //        return await db.QueryAsync<BusinessGrid>("spGetAllBusiness",
-        //               commandType: CommandType.StoredProcedure);
-        //    }
-        //    catch (Exception)
-        //    {
+        public async Task<IEnumerable<business>> GetBusinessesGrid()
+        {
+            try
+            {
+                var Sql = @"Select b.id_business, b.name, a.address1, a.telephone1, 
+                            a.email, b.internal_comments from business b with (nolock) 
+                            inner join business_address ba with (nolock) on b.id_business = ba.id_business 
+                            inner join [address] a with (nolock) on ba.id_address = a.id_address
+                            where isnull(b.invisible,0) = 0";
+                return await db.QueryAsync<business, address, business_address, business>(Sql
+                     , (b, a, ba) => {
+                         ba.address = a;
+                         ba.business = b;
+                         return b;
+                     }
+                     //splitOn: "id_business,id_address"
+                    ).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
 
-        //        throw;
-        //    }
-        //}
+                throw;
+            }
+        }
         //public async Task<IEnumerable<BusinessNameModel>> GetBusinessName()
         //{
         //    try
@@ -130,6 +156,6 @@ namespace communitybuilderapi.Repositories
         //    return param;
         //}
 
-        
+
     }
 }

@@ -39,5 +39,8 @@ namespace communitybuilderapi.DataModel
         public string website { get; set; }
         [MaxLength]
         public string internal_comments { get; set; }
+
+        // Relations
+       
     }
 }

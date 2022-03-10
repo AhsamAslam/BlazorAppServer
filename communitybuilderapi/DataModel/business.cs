@@ -36,6 +36,8 @@ namespace communitybuilderapi.DataModel
         public int language_default { get; set; } = 1;
         [MaxLength]
         public string search_terms { get; set; }
-        public int locally_owned { get; set; }
+        public int? locally_owned { get; set; }
+
+        //Relation
     }
 }

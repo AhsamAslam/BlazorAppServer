@@ -1,4 +1,6 @@
-﻿using communitybuilderapi.Models;
+﻿using communitybuilderapi.DataModel;
+using communitybuilderapi.Dtos.BusinessDtos;
+using communitybuilderapi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +15,11 @@ namespace communitybuilderapi.Interfaces
         //Task<IEnumerable<Business>> GetTopBusinesses();
         //Task<Business> GetBusiness(int BusinessID);
         //Task<IEnumerable<BusinessDetail>> GetBusinessByBusinessID(int BusinessID);
-        //Task<Business> AddBusiness(Business Business);
+        Task<AddBusinessDto> AddBusiness(AddBusinessDto Business);
         //Task<Business> UpdateBusiness(Business Business);
         //Task<int> DeleteBusiness(int BusinessID);
 
         //Task<IEnumerable<LocalBusinessCard>> GetBusinessBySiteID(int SiteID , string SearchText);
-        //Task<IEnumerable<BusinessGrid>> GetBusinessesGrid();
+        Task<IEnumerable<business>> GetBusinessesGrid();
     }
 }
