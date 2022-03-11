@@ -101,11 +101,12 @@ namespace communitybuilderapi.Repositories
         {
             try
             {
-                var Sql = @"Select ba.id_business,b.id_business, b.name, a.address1, a.telephone1, 
-                            a.email, b.internal_comments,ba.id_address,a.id_address  
+                var Sql = @"Select ba.id_business,b.id_business, b.name,b.internal_comments,
+                            ba.id_address,a.id_address,a.address1, a.telephone1, 
+                            a.email  
                             from business_addresses ba with (nolock) inner join business b with (nolock) 
                             on ba.id_business = b.id_business inner join address a with (nolock) 
-                            on ba.id_address = a.id_address where isnull(b.invisible,0) = 0";
+                            on ba.id_address = a.id_address and isnull(b.invisible,0) = 0";
                 return await db.QueryAsync<business_address, business,address, business_address>(Sql
                      , (ba,b,a) => {
                          ba.business = b;
