@@ -31,7 +31,7 @@ namespace communitybuilderapi.Commands.Business.AddBusiness
             {
                 //var e = _mapper.Map<EventDto, Event>(request.EventParam);
                 var Business = await _businessRepository.AddBusiness(request.BusinessParam);
-                request.BusinessParam.BusinessId = Business.BusinessId;
+                request.BusinessParam.BusinessId = Business;
                 return request.BusinessParam;
 
             }

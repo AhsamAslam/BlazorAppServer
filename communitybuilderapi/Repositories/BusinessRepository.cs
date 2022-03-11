@@ -22,18 +22,15 @@ namespace communitybuilderapi.Repositories
         {
             this.db = new SqlConnection(configuration.GetConnectionString("CommunityBuilder"));
         }
-        public async Task<AddBusinessDto> AddBusiness(AddBusinessDto Business)
+        public async Task<int> AddBusiness(AddBusinessDto Business)
         {
             try
             {
-                var sql = "Insert into Event(VirtualOrPhysical, VirtualType, Date, Time, TimeZone,Location, Type, Hyperlink1, Hyperlink2, Comment, DateAdded, " +
-                    "AddedByUserID, Inactive, DeactivateOn, DeactivatedByUserID) values(@VirtualOrPhysical, @VirtualType, @Date, @Time, @TimeZone, @Location, @Type, @Hyperlink1," +
-                    " @Hyperlink2, @Comment, @DateAdded, @AddedByUserID, @Inactive, @DeactivateOn, @DeactivatedByUserID); "
-                          + "Select CAST(SCOPE_IDENTITY() as int);";
-                await db.ExecuteAsync(sql, Business).ConfigureAwait(false);
-                return Business;
+                return await db.ExecuteAsync("AddBusiness",
+                       this.SetBusinessParameter(Business),
+                       commandType: CommandType.StoredProcedure);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -100,22 +97,22 @@ namespace communitybuilderapi.Repositories
         //        throw;
         //    }
         //}
-        public async Task<IEnumerable<business>> GetBusinessesGrid()
+        public async Task<IEnumerable<business_address>> GetBusinessesGrid()
         {
             try
             {
-                var Sql = @"Select b.id_business, b.name, a.address1, a.telephone1, 
-                            a.email, b.internal_comments from business b with (nolock) 
-                            inner join business_address ba with (nolock) on b.id_business = ba.id_business 
-                            inner join [address] a with (nolock) on ba.id_address = a.id_address
-                            where isnull(b.invisible,0) = 0";
-                return await db.QueryAsync<business, address, business_address, business>(Sql
-                     , (b, a, ba) => {
-                         ba.address = a;
+                var Sql = @"Select ba.id_business,b.id_business, b.name, a.address1, a.telephone1, 
+                            a.email, b.internal_comments,ba.id_address,a.id_address  
+                            from business_addresses ba with (nolock) inner join business b with (nolock) 
+                            on ba.id_business = b.id_business inner join address a with (nolock) 
+                            on ba.id_address = a.id_address where isnull(b.invisible,0) = 0";
+                return await db.QueryAsync<business_address, business,address, business_address>(Sql
+                     , (ba,b,a) => {
                          ba.business = b;
-                         return b;
-                     }
-                     //splitOn: "id_business,id_address"
+                         ba.address = a;
+                         return ba;
+                     },
+                     splitOn: "id_business,id_address"
                     ).ConfigureAwait(false);
             }
             catch (Exception ex)
@@ -155,6 +152,16 @@ namespace communitybuilderapi.Repositories
         //    param.Add("@BusinessID", BusinessID);
         //    return param;
         //}
+        private DynamicParameters SetBusinessParameter(AddBusinessDto Business)
+        {
+            DynamicParameters param = new DynamicParameters();
+            param.Add("@BusinesName", Business.BusinessName);
+            param.Add("@BusinessAddress", Business.BusinessAddress);
+            param.Add("@BusinessTelephone", Business.BusinessTelephone);
+            param.Add("@BusinessEmail", Business.BusinessEmail);
+            param.Add("@BusinessComment", Business.BusinessComment);
+            return param;
+        }
 
 
     }

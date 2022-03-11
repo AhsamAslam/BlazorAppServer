@@ -15,11 +15,11 @@ namespace communitybuilderapi.Interfaces
         //Task<IEnumerable<Business>> GetTopBusinesses();
         //Task<Business> GetBusiness(int BusinessID);
         //Task<IEnumerable<BusinessDetail>> GetBusinessByBusinessID(int BusinessID);
-        Task<AddBusinessDto> AddBusiness(AddBusinessDto Business);
+        Task<int> AddBusiness(AddBusinessDto Business);
         //Task<Business> UpdateBusiness(Business Business);
         //Task<int> DeleteBusiness(int BusinessID);
 
         //Task<IEnumerable<LocalBusinessCard>> GetBusinessBySiteID(int SiteID , string SearchText);
-        Task<IEnumerable<business>> GetBusinessesGrid();
+        Task<IEnumerable<business_address>> GetBusinessesGrid();
     }
 }

@@ -12,6 +12,6 @@ namespace communitybuilderapi.Dtos.BusinessDtos
         public string BusinessAddress { get; set; }
         public string BusinessTelephone { get; set; }
         public string BusinessEmail { get; set; }
-        public string BusinessCommment { get; set; }
+        public string BusinessComment { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using communitybuilderapi.Data;
 namespace communitybuilderapi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220310045840_init")]
-    partial class init
+    [Migration("20220311074237_AddBusiness")]
+    partial class AddBusiness
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -138,7 +138,7 @@ namespace communitybuilderapi.Migrations
                     b.Property<decimal>("latitude")
                         .HasColumnType("decimal(8,6)");
 
-                    b.Property<int>("locally_owned")
+                    b.Property<int?>("locally_owned")
                         .HasColumnType("int");
 
                     b.Property<decimal>("longitude")
@@ -223,7 +223,11 @@ namespace communitybuilderapi.Migrations
 
                     b.HasKey("id_business_address");
 
-                    b.ToTable("business_address");
+                    b.HasIndex("id_address");
+
+                    b.HasIndex("id_business");
+
+                    b.ToTable("business_addresses");
                 });
 
             modelBuilder.Entity("communitybuilderapi.DataModel.business_person", b =>
@@ -511,6 +515,35 @@ namespace communitybuilderapi.Migrations
                     b.HasKey("id_site_business");
 
                     b.ToTable("site_business");
+                });
+
+            modelBuilder.Entity("communitybuilderapi.DataModel.business_address", b =>
+                {
+                    b.HasOne("communitybuilderapi.DataModel.address", "address")
+                        .WithMany("business_addresses")
+                        .HasForeignKey("id_address")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("communitybuilderapi.DataModel.business", "business")
+                        .WithMany("business_addresses")
+                        .HasForeignKey("id_business")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("address");
+
+                    b.Navigation("business");
+                });
+
+            modelBuilder.Entity("communitybuilderapi.DataModel.address", b =>
+                {
+                    b.Navigation("business_addresses");
+                });
+
+            modelBuilder.Entity("communitybuilderapi.DataModel.business", b =>
+                {
+                    b.Navigation("business_addresses");
                 });
 #pragma warning restore 612, 618
         }

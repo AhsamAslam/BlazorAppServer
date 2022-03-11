@@ -28,9 +28,16 @@ namespace communitybuilderapi.Queries.Businesses.GetBusinessGrid
 
         public async Task<List<BusinessGridDto>> Handle(GetBusinessGridQuery request, CancellationToken cancellationToken)
         {
-            var o = await _businessRepository.GetBusinessesGrid();
-            var list =  _mapper.Map<List<business>, List<BusinessGridDto>>(o.ToList());
-            return list;
+            try
+            {
+                var o = await _businessRepository.GetBusinessesGrid();
+                var list = _mapper.Map<List<business_address>, List<BusinessGridDto>>(o.ToList());
+                return list;
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

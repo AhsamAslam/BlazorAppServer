@@ -39,5 +39,7 @@ namespace communitybuilderapi.DataModel
         public int? locally_owned { get; set; }
 
         //Relation
+
+        public virtual ICollection<business_address> business_addresses { get; set; }
     }
 }

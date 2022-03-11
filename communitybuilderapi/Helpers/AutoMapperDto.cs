@@ -30,6 +30,14 @@ namespace communitybuilderapi.Helpers
             //CreateMap<File, FileDto>().ReverseMap();
             CreateMap<List<business>, List<BusinessGridDto>>().ReverseMap();
 
+            CreateMap<business_address, BusinessGridDto>()
+               .ForMember(d => d.BusinessId, opt => opt.MapFrom(s => s.id_business))
+               .ForMember(d => d.BusinessName, opt => opt.MapFrom(s => s.business.name))
+               .ForMember(d => d.BusinessAddress, opt => opt.MapFrom(s => s.address.address1))
+               .ForMember(d => d.BusinessTelephone, opt => opt.MapFrom(s => s.address.telephone1))
+               .ForMember(d => d.BusinessEmail, opt => opt.MapFrom(s => s.address.email))
+               .ForMember(d => d.BusinessComment, opt => opt.MapFrom(s => s.business.internal_comments));
+
         }
     }
 }

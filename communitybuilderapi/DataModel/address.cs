@@ -41,6 +41,6 @@ namespace communitybuilderapi.DataModel
         public string internal_comments { get; set; }
 
         // Relations
-       
+        public virtual ICollection<business_address> business_addresses { get; set; }
     }
 }

@@ -56,7 +56,7 @@ namespace communitybuilderapi.Migrations
                     longitude = table.Column<decimal>(type: "decimal(9,6)", nullable: false),
                     language_default = table.Column<int>(type: "int", nullable: false),
                     search_terms = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    locally_owned = table.Column<int>(type: "int", nullable: false),
+                    locally_owned = table.Column<int>(type: "int", nullable: true),
                     created_by_id = table.Column<int>(type: "int", nullable: false),
                     created_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     make_active_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -68,31 +68,6 @@ namespace communitybuilderapi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_business", x => x.id_business);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "business_address",
-                columns: table => new
-                {
-                    id_business_address = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    id_business = table.Column<int>(type: "int", nullable: false),
-                    id_address = table.Column<int>(type: "int", nullable: false),
-                    is_physical = table.Column<bool>(type: "bit", nullable: false),
-                    is_billing = table.Column<bool>(type: "bit", nullable: false),
-                    is_administrative = table.Column<bool>(type: "bit", nullable: false),
-                    internal_comments = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    created_by_id = table.Column<int>(type: "int", nullable: false),
-                    created_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    make_active_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    deactivated_by_id = table.Column<int>(type: "int", nullable: true),
-                    deactivate_datetime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    invisible = table.Column<bool>(type: "bit", nullable: false),
-                    inactive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_business_address", x => x.id_business_address);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,18 +209,59 @@ namespace communitybuilderapi.Migrations
                 {
                     table.PrimaryKey("PK_site_business", x => x.id_site_business);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "business_addresses",
+                columns: table => new
+                {
+                    id_business_address = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    is_physical = table.Column<bool>(type: "bit", nullable: false),
+                    is_billing = table.Column<bool>(type: "bit", nullable: false),
+                    is_administrative = table.Column<bool>(type: "bit", nullable: false),
+                    internal_comments = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    id_address = table.Column<int>(type: "int", nullable: false),
+                    id_business = table.Column<int>(type: "int", nullable: false),
+                    created_by_id = table.Column<int>(type: "int", nullable: false),
+                    created_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    make_active_datetime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    deactivated_by_id = table.Column<int>(type: "int", nullable: true),
+                    deactivate_datetime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    invisible = table.Column<bool>(type: "bit", nullable: false),
+                    inactive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_business_addresses", x => x.id_business_address);
+                    table.ForeignKey(
+                        name: "FK_business_addresses_address_id_address",
+                        column: x => x.id_address,
+                        principalTable: "address",
+                        principalColumn: "id_address",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_business_addresses_business_id_business",
+                        column: x => x.id_business,
+                        principalTable: "business",
+                        principalColumn: "id_business",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_business_addresses_id_address",
+                table: "business_addresses",
+                column: "id_address");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_business_addresses_id_business",
+                table: "business_addresses",
+                column: "id_business");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "address");
-
-            migrationBuilder.DropTable(
-                name: "business");
-
-            migrationBuilder.DropTable(
-                name: "business_address");
+                name: "business_addresses");
 
             migrationBuilder.DropTable(
                 name: "business_person");
@@ -264,6 +280,12 @@ namespace communitybuilderapi.Migrations
 
             migrationBuilder.DropTable(
                 name: "site_business");
+
+            migrationBuilder.DropTable(
+                name: "address");
+
+            migrationBuilder.DropTable(
+                name: "business");
         }
     }
 }
