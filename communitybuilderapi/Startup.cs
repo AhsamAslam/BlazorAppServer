@@ -5,6 +5,7 @@ using communitybuilderapi.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -65,6 +66,11 @@ namespace communitybuilderapi
                     builder => builder.WithOrigins("*")
                 .AllowAnyHeader()
                 .AllowAnyMethod());
+            });
+
+            services.Configure<FormOptions>(x =>
+            {
+                x.MultipartBodyLengthLimit = 600000000;
             });
         }
 

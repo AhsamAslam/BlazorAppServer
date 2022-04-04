@@ -211,6 +211,22 @@ namespace communitybuilderapi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "video",
+                columns: table => new
+                {
+                    videoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    size = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    url = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_video", x => x.videoId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "business_addresses",
                 columns: table => new
                 {
@@ -280,6 +296,9 @@ namespace communitybuilderapi.Migrations
 
             migrationBuilder.DropTable(
                 name: "site_business");
+
+            migrationBuilder.DropTable(
+                name: "video");
 
             migrationBuilder.DropTable(
                 name: "address");

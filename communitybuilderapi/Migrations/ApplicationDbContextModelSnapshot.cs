@@ -515,6 +515,30 @@ namespace communitybuilderapi.Migrations
                     b.ToTable("site_business");
                 });
 
+            modelBuilder.Entity("communitybuilderapi.DataModel.video", b =>
+                {
+                    b.Property<int>("videoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("videoId");
+
+                    b.ToTable("video");
+                });
+
             modelBuilder.Entity("communitybuilderapi.DataModel.business_address", b =>
                 {
                     b.HasOne("communitybuilderapi.DataModel.address", "address")

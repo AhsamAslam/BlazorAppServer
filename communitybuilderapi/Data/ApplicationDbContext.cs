@@ -49,6 +49,8 @@ namespace communitybuilderapi.Data
         public virtual DbSet<site_address> site_address { get; set; }
         public virtual DbSet<site_business> site_business { get; set; }
 
+        public virtual DbSet<video> video { get; set; }
+
         //public virtual DbSet<SiteHeader> SiteHeader { get; set; }
         //public virtual DbSet<BusinessCommentSub> BusinessCommentSub { get; set; }
         //public virtual DbSet<BusinessEvents> BusinessEvents { get; set; }
