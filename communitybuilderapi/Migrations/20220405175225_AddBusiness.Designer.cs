@@ -10,8 +10,8 @@ using communitybuilderapi.Data;
 namespace communitybuilderapi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220404184137_init")]
-    partial class init
+    [Migration("20220405175225_AddBusiness")]
+    partial class AddBusiness
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -523,6 +523,9 @@ namespace communitybuilderapi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");

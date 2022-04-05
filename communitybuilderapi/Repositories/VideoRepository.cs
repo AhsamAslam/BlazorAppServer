@@ -25,8 +25,8 @@ namespace communitybuilderapi.Repositories
         {
             try
             {
-                var Sql = @"";
-                return await db.ExecuteAsync(Sql).ConfigureAwait(false);
+                var Sql = @"INSERT INTO video(name,size,type,url UserId) VALUES (@name,@size,@type,@url, @UserId)";
+                return await db.ExecuteAsync(Sql, video).ConfigureAwait(false);
             }
             catch (Exception e)
             {

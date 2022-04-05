@@ -219,7 +219,8 @@ namespace communitybuilderapi.Migrations
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     size = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    url = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    url = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {

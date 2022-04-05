@@ -1,4 +1,5 @@
-﻿using communitybuilderapi.DataModel;
+﻿using communitybuilderapi.Commands.Video;
+using communitybuilderapi.DataModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,14 +29,12 @@ namespace communitybuilderapi.Controllers
             {
                 string path = string.Empty;
                 video video = new video();
-                var blob = HttpContext.Request.Form.Files;
-               
-
                 if (HttpContext.Request.Form.Files.Any())
                 {
                     foreach (var file in HttpContext.Request.Form.Files)
                     {
-                        path = Path.Combine(_IWebHostEnvironment.ContentRootPath, "Upload/video", DateTime.Now + "_" + file.FileName);
+                        //path = Path.Combine(_IWebHostEnvironment.ContentRootPath, "Upload/video", file.FileName);
+                        path = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\video", file.FileName);
                         using (var stream = new FileStream(path, FileMode.Create))
                         {
                             await file.CopyToAsync(stream);
@@ -45,8 +44,13 @@ namespace communitybuilderapi.Controllers
                         video.type = file.ContentType;
                         float size = file.Length;
                         video.size = Convert.ToString(size / 1024);
+                        video.url = path;
+                        video.UserId = CurrentUser.Id;
+
+
                     }
                 }
+                await Mediator.Send(new SaveVideoCommand() { video = video});
                 return path;
             }
             catch (Exception e)

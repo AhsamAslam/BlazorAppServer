@@ -12,5 +12,6 @@ namespace communitybuilderapi.DataModel
         public string size { get; set; }
         public string type { get; set; }
         public string url { get; set; }
+        public Guid UserId { get; set; }
     }
 }
